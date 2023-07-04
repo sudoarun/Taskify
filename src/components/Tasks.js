@@ -2,9 +2,11 @@ import { deleteDoc, doc, onSnapshot } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import ref from "../service/collectionRef";
 import db from "../firebase";
+import Modal from "./Modal";
 
 const Tasks = () => {
   const [tasklist, setTaskList] = useState([]);
+  const [taskID, setTaskID] = useState("");
   useEffect(() => {
     const unsubscribe = onSnapshot(ref, (snapshot) => {
       setTaskList(
@@ -27,7 +29,7 @@ const Tasks = () => {
       .catch((err) => console.log(err));
   }
   function editNote(id) {
-    alert(id);
+    setTaskID(id);
   }
   return (
     <div>
@@ -41,6 +43,8 @@ const Tasks = () => {
               <div>
                 <button
                   className="material-icons-outlined border-0 bg-warning text-white me-2"
+                  data-mdb-toggle="modal"
+                  data-mdb-target="#updateModal"
                   onClick={() => editNote(id)}
                 >
                   edit_note
@@ -54,6 +58,7 @@ const Tasks = () => {
                 </button>
               </div>
             </div>
+            <Modal taskID={taskID} />
           </div>
         ))}
       </div>
