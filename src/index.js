@@ -4,6 +4,8 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "material-icons/iconfont/material-icons.css";
+import "materialize-css";
+import "mdb-ui-kit";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
