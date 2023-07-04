@@ -26,22 +26,33 @@ const Tasks = () => {
       .then(() => alert("Task Deleted"))
       .catch((err) => console.log(err));
   }
+  function editNote(id) {
+    alert(id);
+  }
   return (
     <div>
       <h5>Tasks Will SHow Here</h5>
-      <div>
+      <div className="container">
         {tasklist.map(({ id, data }, i) => (
-          <div key={id}>
-            <div className="flex-auto ">
+          <div key={id} className="my-2">
+            <div className="d-flex align-items-center justify-content-between">
               <span>{i + 1}</span>
               <span>{data.todo}</span>
-              <button
-                type="button"
-                className="material-icons-outlined"
-                onClick={() => deleteTask(id)}
-              >
-                delete_outline
-              </button>
+              <div>
+                <button
+                  className="material-icons-outlined border-0 bg-warning text-white me-2"
+                  onClick={() => editNote(id)}
+                >
+                  edit_note
+                </button>
+                <button
+                  type="button"
+                  className="material-icons-outlined bg-danger border-0 text-white"
+                  onClick={() => deleteTask(id)}
+                >
+                  delete_outline
+                </button>
+              </div>
             </div>
           </div>
         ))}
