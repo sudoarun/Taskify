@@ -28,6 +28,7 @@ const BottomNav = () => {
         <div className="border rounded d-flex py-3 px-2">
           <input
             type="text"
+            id="bottomInput"
             placeholder="Add Task"
             className="form-control border-0"
             value={value}

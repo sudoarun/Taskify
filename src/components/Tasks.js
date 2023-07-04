@@ -40,23 +40,30 @@ const Tasks = () => {
             <div className="d-flex align-items-center justify-content-between">
               <span>{i + 1}</span>
               <span>{data.todo}</span>
-              <div>
-                <button
-                  className="material-icons-outlined border-0 py-2 px-2 text-warning me-2"
-                  data-mdb-toggle="modal"
-                  data-mdb-target="#updateModal"
-                  onClick={() => editNote(id)}
-                >
-                  edit_note
-                </button>
-                <button
-                  type="button"
-                  className="material-icons-outlined border-0 rounded py-2 px-2 text-danger"
-                  onClick={() => deleteTask(id)}
-                >
-                  delete_outline
-                </button>
-              </div>
+              <button
+                class="material-icons-outlined border-0 bg-white"
+                data-mdb-toggle="dropdown"
+                aria-expanded="false"
+              >
+                more_vert
+              </button>
+              <ul class="dropdown-menu">
+                <li>
+                  <button
+                    class="dropdown-item"
+                    data-mdb-toggle="modal"
+                    data-mdb-target="#updateModal"
+                    onClick={() => editNote(id)}
+                  >
+                    Edit
+                  </button>
+                </li>
+                <li>
+                  <button class="dropdown-item" onClick={() => deleteTask(id)}>
+                    Delete
+                  </button>
+                </li>
+              </ul>
             </div>
             <Modal taskID={taskID} />
           </div>

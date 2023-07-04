@@ -6,6 +6,10 @@ const Modal = ({ taskID }) => {
   const [update, setUpdate] = useState("");
   function UpdateForm(e) {
     e.preventDefault();
+    if (update === "") {
+      alert("Enter Text");
+      return;
+    }
     const updateref = doc(db, "taskify", taskID);
     updateDoc(updateref, {
       todo: update,
@@ -49,7 +53,12 @@ const Modal = ({ taskID }) => {
                 onChange={(e) => setUpdate(e.target.value)}
               />
               <div className="mt-3">
-                <button type="submit" className="btn btn-primary w-100">
+                <button
+                  type="submit"
+                  className="btn btn-primary w-100"
+                  data-mdb-dismiss="modal"
+                  aria-label="Close"
+                >
                   Save changes
                 </button>
               </div>
