@@ -5,10 +5,16 @@ import Navbar from "./Navbar";
 
 const Home = () => {
   return (
-    <div>
-      <Navbar />
-      <Tasks />
-      <BottomNav />
+    <div className="d-flex justify-content-between flex-column vh-100">
+      <div className="pb-2">
+        <Navbar />
+      </div>
+      <div className="vh-75 overflow-auto">
+        <Tasks />
+      </div>
+      <div className="py-2">
+        <BottomNav />
+      </div>
     </div>
   );
 };

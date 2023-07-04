@@ -33,7 +33,7 @@ const Tasks = () => {
   }
   return (
     <div>
-      <h5>Tasks Will SHow Here</h5>
+      <h5 className="text-center">Tasks Will Show Here</h5>
       <div className="container">
         {tasklist.map(({ id, data }, i) => (
           <div key={id} className="my-2">
@@ -42,7 +42,7 @@ const Tasks = () => {
               <span>{data.todo}</span>
               <div>
                 <button
-                  className="material-icons-outlined border-0 bg-warning text-white me-2"
+                  className="material-icons-outlined border-0 py-2 px-2 text-warning me-2"
                   data-mdb-toggle="modal"
                   data-mdb-target="#updateModal"
                   onClick={() => editNote(id)}
@@ -51,7 +51,7 @@ const Tasks = () => {
                 </button>
                 <button
                   type="button"
-                  className="material-icons-outlined bg-danger border-0 text-white"
+                  className="material-icons-outlined border-0 rounded py-2 px-2 text-danger"
                   onClick={() => deleteTask(id)}
                 >
                   delete_outline

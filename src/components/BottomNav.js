@@ -25,14 +25,22 @@ const BottomNav = () => {
   return (
     <div className="container">
       <form onSubmit={createTask}>
-        <input
-          type="text"
-          placeholder="Add Task"
-          className="form-control"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-        />
-        <button type="submit">Create</button>
+        <div className="border rounded d-flex py-3 px-2">
+          <input
+            type="text"
+            placeholder="Add Task"
+            className="form-control border-0"
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+          />
+
+          <button
+            class="material-icons-outlined bg-success text-white border-0 py-2 px-2 rounded-circle"
+            type="submit"
+          >
+            add_circle
+          </button>
+        </div>
       </form>
     </div>
   );
