@@ -23,11 +23,12 @@ const BottomNav = () => {
     setValue("");
   };
   return (
-    <div>
+    <div className="container">
       <form onSubmit={createTask}>
         <input
           type="text"
           placeholder="Add Task"
+          className="form-control"
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />

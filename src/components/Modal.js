@@ -1,6 +1,19 @@
-import React from "react";
+import { doc, updateDoc } from "firebase/firestore";
+import React, { useState } from "react";
+import db from "../firebase";
 
 const Modal = ({ taskID }) => {
+  const [update, setUpdate] = useState("");
+  function UpdateForm(e) {
+    e.preventDefault();
+    const updateref = doc(db, "taskify", taskID);
+    updateDoc(updateref, {
+      todo: update,
+    })
+      .then(() => alert("Task Updated"))
+      .catch((err) => console.log(err.message));
+    setUpdate("");
+  }
   return (
     <div
       className="modal fade"
@@ -27,18 +40,20 @@ const Modal = ({ taskID }) => {
               <span>Task ID : </span>
               <span>{taskID}</span>
             </div>
-            <div className="mt-2">
+            <form className="mt-2" onSubmit={UpdateForm}>
               <input
                 type="text"
                 placeholder="Enter Changes in Task"
                 className="form-control"
+                value={update}
+                onChange={(e) => setUpdate(e.target.value)}
               />
-            </div>
-            <div className="mt-3">
-              <button type="button" className="btn btn-primary w-100">
-                Save changes
-              </button>
-            </div>
+              <div className="mt-3">
+                <button type="submit" className="btn btn-primary w-100">
+                  Save changes
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
