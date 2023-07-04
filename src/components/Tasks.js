@@ -33,13 +33,16 @@ const Tasks = () => {
   }
   return (
     <div>
-      <h5 className="text-center">Tasks Will Show Here</h5>
+      <h5 className="text-center mb-4">Tasks Will Show Here</h5>
       <div className="container">
         {tasklist.map(({ id, data }, i) => (
           <div key={id} className="my-2">
             <div className="d-flex align-items-center justify-content-between">
-              <span>{i + 1}</span>
-              <span>{data.todo}</span>
+              <div>
+                <span className="me-3">{i + 1}</span>
+                <span>{data.todo}</span>
+              </div>
+
               <button
                 class="material-icons-outlined border-0 bg-white"
                 data-mdb-toggle="dropdown"
