@@ -8,7 +8,7 @@ import Alert from "./Alert";
 const Tasks = () => {
   const [tasklist, setTaskList] = useState([]);
   const [taskID, setTaskID] = useState("");
-  const [alert, setAlert] = useState(true);
+  const [alert, setAlert] = useState(false);
   const [alertdanger, setAlertdanger] = useState(false);
   useEffect(() => {
     const unsubscribe = onSnapshot(ref, (snapshot) => {
