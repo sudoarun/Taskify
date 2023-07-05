@@ -8,7 +8,7 @@ import CheckBox from "./CheckBox";
 const Tasks = ({ setAlert, setAlertdanger }) => {
   const [tasklist, setTaskList] = useState([]);
   const [taskID, setTaskID] = useState("");
-  const [check, setCheck] = useState(false);
+  // const [check, setCheck] = useState(false);
   useEffect(() => {
     const unsubscribe = onSnapshot(ref, (snapshot) => {
       setTaskList(
@@ -36,7 +36,7 @@ const Tasks = ({ setAlert, setAlertdanger }) => {
     setTaskID(id);
   }
 
-  // console.log(tasklist);
+  // console.log(tasklist.filter((db) => db.data.todo.includes("done")));
   return (
     <div className="overflow-hidden" style={{ height: "70vh" }}>
       {tasklist.length === 0 ? (
@@ -45,7 +45,8 @@ const Tasks = ({ setAlert, setAlertdanger }) => {
         <div className="container" style={{ height: "100%" }}>
           <h5 className="text-center mb-4">Your Task's</h5>
           <div
-            className="bg-white overflow-auto p-3 rounded shadow-3"
+            className="bg-white scrollhide overflow-auto p-3 rounded shadow-3"
+            data-mdb-perfect-scrollbar="true"
             style={{ height: "100%" }}
           >
             {tasklist.map(({ id, data }, i) => (
@@ -88,7 +89,7 @@ const Tasks = ({ setAlert, setAlertdanger }) => {
                     </li>
                   </ul>
                 </div>
-                <Modal taskID={taskID} />
+                <Modal taskID={taskID} setAlert={setAlert} />
               </div>
             ))}
           </div>

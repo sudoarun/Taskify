@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import db from "../firebase";
 import CheckBox from "./CheckBox";
 
-const Modal = ({ taskID }) => {
+const Modal = ({ taskID, setAlert }) => {
   const [update, setUpdate] = useState("");
   const [isdone, setDone] = useState(false);
   function UpdateForm(e) {
@@ -17,10 +17,15 @@ const Modal = ({ taskID }) => {
       todo: update,
       complete: isdone,
     })
-      .then(() => alert("Task Updated"))
+      .then(setAlert(true))
       .catch((err) => console.log(err.message));
     setUpdate("");
+    setDone(false);
+    setTimeout(() => {
+      setAlert(false);
+    }, 1000);
   }
+
   // console.log(isdone);
   return (
     <div

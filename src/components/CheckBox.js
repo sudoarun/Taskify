@@ -1,12 +1,11 @@
 import React from "react";
 
 const CheckBox = ({ check, oncheck }) => {
-  // const [isdone, setDone] = useState(false);
-  // console.log(oncheck);
+  // console.log(check);
   return (
     <div className="checkbox-wrapper-12">
       <div className="cbx">
-        {oncheck === "" ? (
+        {oncheck ? (
           <input
             id="cbx-12"
             type="checkbox"
@@ -14,7 +13,7 @@ const CheckBox = ({ check, oncheck }) => {
             onChange={oncheck}
           />
         ) : (
-          <input id="cbx-12" type="checkbox" defaultChecked={check} />
+          <input id="cbx-12" type="checkbox" checked={check} readOnly />
         )}
         <label htmlFor="cbx-12"></label>
         <svg width="15" height="14" viewBox="0 0 15 14" fill="none">

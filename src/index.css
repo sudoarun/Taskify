@@ -9,3 +9,8 @@ input {
 body {
   background: #e3e9ff;
 }
+
+.overflow-y-scroll::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+}
