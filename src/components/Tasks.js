@@ -52,7 +52,7 @@ const Tasks = ({ setAlert, setAlertdanger }) => {
                   </div>
 
                   <button
-                    class="material-icons-outlined border-0 bg-white"
+                    class="material-icons-outlined border-0 bg-transparent"
                     data-mdb-toggle="dropdown"
                     aria-expanded="false"
                   >

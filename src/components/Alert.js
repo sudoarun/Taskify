@@ -19,7 +19,7 @@ const Alert = ({ alertdanger }) => {
           style={{ background: "#539165", opacity: "0.9" }}
         >
           <div className="d-flex justify-content-between align-items-center">
-            <span>Data Saved Successfully !!!</span>
+            <span>Task Created !!!</span>
             <span class="material-icons-outlined">close</span>
           </div>
         </div>
