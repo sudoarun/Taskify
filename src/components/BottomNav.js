@@ -23,7 +23,7 @@ const BottomNav = ({ setAlert }) => {
   return (
     <div className="container">
       <form onSubmit={createTask}>
-        <div className="border rounded d-flex py-3 px-2">
+        <div className="rounded d-flex py-3 px-2 shadow-4">
           <input
             type="text"
             id="bottomInput"

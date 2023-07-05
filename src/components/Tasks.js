@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import ref from "../service/collectionRef";
 import db from "../firebase";
 import Modal from "./Modal";
+import CheckBox from "./CheckBox";
 
 const Tasks = ({ setAlert, setAlertdanger }) => {
   const [tasklist, setTaskList] = useState([]);
@@ -36,7 +37,7 @@ const Tasks = ({ setAlert, setAlertdanger }) => {
 
   console.log(tasklist);
   return (
-    <div className="" style={{ height: "65vh" }}>
+    <div className="overflow-hidden" style={{ height: "70vh" }}>
       {tasklist.length === 0 ? (
         <h5 className="text-center mb-4">No Task Available !!</h5>
       ) : (
@@ -49,22 +50,26 @@ const Tasks = ({ setAlert, setAlertdanger }) => {
             {tasklist.map(({ id, data }, i) => (
               <div key={id} className="my-2">
                 <div className="d-flex align-items-center justify-content-between">
-                  <div>
-                    <span className="me-3">{i + 1}</span>
-                    <span>{data.todo}</span>
+                  <div className="d-flex">
+                    <div className="me-2">
+                      <CheckBox />
+                    </div>
+                    <div>
+                      <span>{data.todo}</span>
+                    </div>
                   </div>
 
                   <button
-                    class="material-icons-outlined border-0 bg-transparent"
+                    className="material-icons-outlined border-0 bg-transparent"
                     data-mdb-toggle="dropdown"
                     aria-expanded="false"
                   >
                     more_vert
                   </button>
-                  <ul class="dropdown-menu">
+                  <ul className="dropdown-menu">
                     <li>
                       <button
-                        class="dropdown-item"
+                        className="dropdown-item"
                         data-mdb-toggle="modal"
                         data-mdb-target="#updateModal"
                         onClick={() => editNote(id)}
@@ -74,7 +79,7 @@ const Tasks = ({ setAlert, setAlertdanger }) => {
                     </li>
                     <li>
                       <button
-                        class="dropdown-item"
+                        className="dropdown-item"
                         onClick={() => deleteTask(id)}
                       >
                         Delete

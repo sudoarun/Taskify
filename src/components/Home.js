@@ -21,7 +21,7 @@ const Home = () => {
           alertdanger={alertdanger}
         />
       </div>
-      <div className="py-2 fixed-bottom">
+      <div className="py-2 fixed-bottom mb-2">
         <BottomNav setAlert={setAlert} />
       </div>
     </div>
