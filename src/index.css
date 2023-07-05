@@ -3,6 +3,9 @@ input:focus {
   outline: none !important;
   box-shadow: none !important;
 }
+input {
+  background: #e3e9ff !important;
+}
 body {
   background: #e3e9ff;
 }

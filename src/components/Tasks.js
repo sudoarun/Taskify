@@ -36,13 +36,16 @@ const Tasks = ({ setAlert, setAlertdanger }) => {
 
   console.log(tasklist);
   return (
-    <div className="">
+    <div className="" style={{ height: "65vh" }}>
       {tasklist.length === 0 ? (
         <h5 className="text-center mb-4">No Task Available !!</h5>
       ) : (
-        <div>
+        <div className="container" style={{ height: "100%" }}>
           <h5 className="text-center mb-4">Your Task's</h5>
-          <div className="container">
+          <div
+            className="bg-white overflow-auto p-3 rounded shadow-3"
+            style={{ height: "100%" }}
+          >
             {tasklist.map(({ id, data }, i) => (
               <div key={id} className="my-2">
                 <div className="d-flex align-items-center justify-content-between">

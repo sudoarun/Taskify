@@ -9,19 +9,19 @@ const Home = () => {
   const [alertdanger, setAlertdanger] = useState(false);
 
   return (
-    <div className="d-flex justify-content-between flex-column vh-100">
+    <div className=" vh-100">
       <div className="pb-2">
         <Navbar />
         {alert ? <Alert alertdanger={alertdanger} /> : ""}
       </div>
-      <div className=" overflow-auto" style={{ height: "75vh" }}>
+      <div className="">
         <Tasks
           setAlert={setAlert}
           setAlertdanger={setAlertdanger}
           alertdanger={alertdanger}
         />
       </div>
-      <div className="py-2">
+      <div className="py-2 fixed-bottom">
         <BottomNav setAlert={setAlert} />
       </div>
     </div>
