@@ -9,7 +9,7 @@ const Home = () => {
       <div className="pb-2">
         <Navbar />
       </div>
-      <div className="vh-75 overflow-auto">
+      <div className=" overflow-auto" style={{ height: "75vh" }}>
         <Tasks />
       </div>
       <div className="py-2">

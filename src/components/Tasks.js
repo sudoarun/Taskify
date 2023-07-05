@@ -3,10 +3,13 @@ import React, { useEffect, useState } from "react";
 import ref from "../service/collectionRef";
 import db from "../firebase";
 import Modal from "./Modal";
+import Alert from "./Alert";
 
 const Tasks = () => {
   const [tasklist, setTaskList] = useState([]);
   const [taskID, setTaskID] = useState("");
+  const [alert, setAlert] = useState(true);
+  const [alertdanger, setAlertdanger] = useState(false);
   useEffect(() => {
     const unsubscribe = onSnapshot(ref, (snapshot) => {
       setTaskList(
@@ -24,54 +27,69 @@ const Tasks = () => {
   function deleteTask(id) {
     // alert(id);
     const delTask = doc(db, "taskify", id);
-    deleteDoc(delTask)
-      .then(() => alert("Task Deleted"))
-      .catch((err) => console.log(err));
+    deleteDoc(delTask).then(setAlert(true) || setAlertdanger(true));
+    setTimeout(() => {
+      setAlert(false);
+      setAlertdanger(false);
+    }, 1000);
   }
   function editNote(id) {
     setTaskID(id);
   }
-  return (
-    <div>
-      <h5 className="text-center mb-4">Tasks Will Show Here</h5>
-      <div className="container">
-        {tasklist.map(({ id, data }, i) => (
-          <div key={id} className="my-2">
-            <div className="d-flex align-items-center justify-content-between">
-              <div>
-                <span className="me-3">{i + 1}</span>
-                <span>{data.todo}</span>
-              </div>
 
-              <button
-                class="material-icons-outlined border-0 bg-white"
-                data-mdb-toggle="dropdown"
-                aria-expanded="false"
-              >
-                more_vert
-              </button>
-              <ul class="dropdown-menu">
-                <li>
+  console.log(tasklist);
+  return (
+    <div className="">
+      {alert ? <Alert alertdanger={alertdanger} /> : ""}
+
+      {tasklist.length === 0 ? (
+        <h5 className="text-center mb-4">No Task Available !!</h5>
+      ) : (
+        <div>
+          <h5 className="text-center mb-4">Your Task's</h5>
+          <div className="container">
+            {tasklist.map(({ id, data }, i) => (
+              <div key={id} className="my-2">
+                <div className="d-flex align-items-center justify-content-between">
+                  <div>
+                    <span className="me-3">{i + 1}</span>
+                    <span>{data.todo}</span>
+                  </div>
+
                   <button
-                    class="dropdown-item"
-                    data-mdb-toggle="modal"
-                    data-mdb-target="#updateModal"
-                    onClick={() => editNote(id)}
+                    class="material-icons-outlined border-0 bg-white"
+                    data-mdb-toggle="dropdown"
+                    aria-expanded="false"
                   >
-                    Edit
+                    more_vert
                   </button>
-                </li>
-                <li>
-                  <button class="dropdown-item" onClick={() => deleteTask(id)}>
-                    Delete
-                  </button>
-                </li>
-              </ul>
-            </div>
-            <Modal taskID={taskID} />
+                  <ul class="dropdown-menu">
+                    <li>
+                      <button
+                        class="dropdown-item"
+                        data-mdb-toggle="modal"
+                        data-mdb-target="#updateModal"
+                        onClick={() => editNote(id)}
+                      >
+                        Edit
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        class="dropdown-item"
+                        onClick={() => deleteTask(id)}
+                      >
+                        Delete
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+                <Modal taskID={taskID} />
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </div>
+      )}
     </div>
   );
 };
