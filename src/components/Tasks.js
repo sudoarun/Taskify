@@ -8,6 +8,7 @@ import CheckBox from "./CheckBox";
 const Tasks = ({ setAlert, setAlertdanger }) => {
   const [tasklist, setTaskList] = useState([]);
   const [taskID, setTaskID] = useState("");
+  const [check, setCheck] = useState(false);
   useEffect(() => {
     const unsubscribe = onSnapshot(ref, (snapshot) => {
       setTaskList(
@@ -52,7 +53,7 @@ const Tasks = ({ setAlert, setAlertdanger }) => {
                 <div className="d-flex align-items-center justify-content-between">
                   <div className="d-flex">
                     <div className="me-2">
-                      <CheckBox />
+                      <CheckBox check={data.complete} />
                     </div>
                     <div>
                       <span>{data.todo}</span>

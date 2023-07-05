@@ -10,7 +10,7 @@ const Alert = ({ alertdanger }) => {
         >
           <div className="d-flex justify-content-between align-items-center">
             <span>Task Deleted!</span>
-            <span class="material-icons-outlined">close</span>
+            <span className="material-icons-outlined">close</span>
           </div>
         </div>
       ) : (
@@ -20,7 +20,7 @@ const Alert = ({ alertdanger }) => {
         >
           <div className="d-flex justify-content-between align-items-center">
             <span>Task Created !!!</span>
-            <span class="material-icons-outlined">close</span>
+            <span className="material-icons-outlined">close</span>
           </div>
         </div>
       )}

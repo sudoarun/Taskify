@@ -34,7 +34,7 @@ const BottomNav = ({ setAlert }) => {
           />
 
           <button
-            class="material-icons-outlined bg-success text-white border-0 py-2 px-2 rounded-circle"
+            className="material-icons-outlined bg-success text-white border-0 py-2 px-2 rounded-circle"
             type="submit"
           >
             add_circle

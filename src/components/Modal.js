@@ -1,9 +1,11 @@
 import { doc, updateDoc } from "firebase/firestore";
 import React, { useState } from "react";
 import db from "../firebase";
+import CheckBox from "./CheckBox";
 
 const Modal = ({ taskID }) => {
   const [update, setUpdate] = useState("");
+  const [isdone, setDone] = useState(false);
   function UpdateForm(e) {
     e.preventDefault();
     if (update === "") {
@@ -13,11 +15,13 @@ const Modal = ({ taskID }) => {
     const updateref = doc(db, "taskify", taskID);
     updateDoc(updateref, {
       todo: update,
+      complete: isdone,
     })
       .then(() => alert("Task Updated"))
       .catch((err) => console.log(err.message));
     setUpdate("");
   }
+  // console.log(isdone);
   return (
     <div
       className="modal fade"
@@ -40,9 +44,19 @@ const Modal = ({ taskID }) => {
             ></button>
           </div>
           <div className="modal-body">
-            <div className="d-flex justify-content-between">
-              <span>Task ID : </span>
-              <span>{taskID}</span>
+            <div className="row">
+              <div className="col-6">
+                <span>Task ID : </span>
+              </div>
+              <div className="col-6">
+                <span>{taskID}</span>
+              </div>
+              <div className="col-6">
+                <span>Task Completed ? :</span>
+              </div>
+              <div className="col-6">
+                <CheckBox check={isdone} oncheck={() => setDone(!isdone)} />
+              </div>
             </div>
             <form className="mt-2" onSubmit={UpdateForm}>
               <input
