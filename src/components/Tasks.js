@@ -3,13 +3,10 @@ import React, { useEffect, useState } from "react";
 import ref from "../service/collectionRef";
 import db from "../firebase";
 import Modal from "./Modal";
-import Alert from "./Alert";
 
-const Tasks = () => {
+const Tasks = ({ setAlert, setAlertdanger }) => {
   const [tasklist, setTaskList] = useState([]);
   const [taskID, setTaskID] = useState("");
-  const [alert, setAlert] = useState(false);
-  const [alertdanger, setAlertdanger] = useState(false);
   useEffect(() => {
     const unsubscribe = onSnapshot(ref, (snapshot) => {
       setTaskList(
@@ -40,8 +37,6 @@ const Tasks = () => {
   console.log(tasklist);
   return (
     <div className="">
-      {alert ? <Alert alertdanger={alertdanger} /> : ""}
-
       {tasklist.length === 0 ? (
         <h5 className="text-center mb-4">No Task Available !!</h5>
       ) : (

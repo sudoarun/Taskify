@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { addDoc, serverTimestamp } from "firebase/firestore";
 import ref from "../service/collectionRef";
 
-const BottomNav = () => {
+const BottomNav = ({ setAlert }) => {
   const [value, setValue] = useState("");
   const createTask = (e) => {
     e.preventDefault();
@@ -15,12 +15,10 @@ const BottomNav = () => {
       complete: false,
       time: serverTimestamp(),
     })
-      .then(
-        (response) =>
-          console.log(response.id) || alert("New Task Added Successfully")
-      )
+      .then(setAlert(true))
       .catch((err) => console.log(err));
     setValue("");
+    setTimeout(() => setAlert(false), 1000);
   };
   return (
     <div className="container">
