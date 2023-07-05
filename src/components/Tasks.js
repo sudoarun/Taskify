@@ -36,7 +36,7 @@ const Tasks = ({ setAlert, setAlertdanger }) => {
     setTaskID(id);
   }
 
-  console.log(tasklist);
+  // console.log(tasklist);
   return (
     <div className="overflow-hidden" style={{ height: "70vh" }}>
       {tasklist.length === 0 ? (
