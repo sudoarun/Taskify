@@ -3,8 +3,7 @@ import React, { useState } from "react";
 import db from "../firebase";
 import CheckBox from "./CheckBox";
 
-const Modal = ({ taskID, setAlert, todoMsg }) => {
-  // const [todoText, setTodoText] = useState(todoMsg);
+const Modal = ({ taskID, setAlert }) => {
   const [update, setUpdate] = useState("");
   const [isdone, setDone] = useState(false);
   function UpdateForm(e) {
@@ -12,10 +11,9 @@ const Modal = ({ taskID, setAlert, todoMsg }) => {
     const updateref = doc(db, "taskify", taskID);
     if (update === "") {
       updateDoc(updateref, {
-        todo: todoMsg,
         complete: isdone,
       })
-        .then(alert("Save Existed data"))
+        .then(setAlert(true))
         .catch((err) => console.log(err.message));
       setUpdate("");
       setDone(false);
@@ -37,7 +35,6 @@ const Modal = ({ taskID, setAlert, todoMsg }) => {
       setAlert(false);
     }, 1000);
   }
-  // console.log(update);
   return (
     <div
       className="modal fade"
