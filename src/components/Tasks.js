@@ -8,6 +8,7 @@ import CheckBox from "./CheckBox";
 const Tasks = ({ setAlert, setAlertdanger }) => {
   const [tasklist, setTaskList] = useState([]);
   const [taskID, setTaskID] = useState("");
+  const [todoMsg, setTodoMsg] = useState("");
   // const [check, setCheck] = useState(false);
   useEffect(() => {
     const unsubscribe = onSnapshot(ref, (snapshot) => {
@@ -74,7 +75,7 @@ const Tasks = ({ setAlert, setAlertdanger }) => {
                         className="dropdown-item"
                         data-mdb-toggle="modal"
                         data-mdb-target="#updateModal"
-                        onClick={() => editNote(id)}
+                        onClick={() => editNote(id) || setTodoMsg(data.todo)}
                       >
                         Edit
                       </button>
@@ -89,7 +90,7 @@ const Tasks = ({ setAlert, setAlertdanger }) => {
                     </li>
                   </ul>
                 </div>
-                <Modal taskID={taskID} setAlert={setAlert} />
+                <Modal taskID={taskID} todoMsg={todoMsg} setAlert={setAlert} />
               </div>
             ))}
           </div>

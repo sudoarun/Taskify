@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import db from "../firebase";
 import CheckBox from "./CheckBox";
 
-const Modal = ({ taskID, setAlert }) => {
-  const [update, setUpdate] = useState("");
+const Modal = ({ taskID, setAlert, todoMsg }) => {
+  const [update, setUpdate] = useState(todoMsg);
   const [isdone, setDone] = useState(false);
   function UpdateForm(e) {
     e.preventDefault();
@@ -26,7 +26,7 @@ const Modal = ({ taskID, setAlert }) => {
     }, 1000);
   }
 
-  // console.log(isdone);
+  // console.log(todoMsg);
   return (
     <div
       className="modal fade"

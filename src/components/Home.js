@@ -5,8 +5,8 @@ import Navbar from "./Navbar";
 import Alert from "./Alert";
 
 const Home = () => {
-  const [alert, setAlert] = useState(false);
-  const [alertdanger, setAlertdanger] = useState(false);
+  const [alert, setAlert] = useState(false); // Notification
+  const [alertdanger, setAlertdanger] = useState(false); // Delete Notification same component
 
   return (
     <div className=" vh-100">
