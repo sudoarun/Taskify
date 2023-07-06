@@ -4,15 +4,27 @@ import db from "../firebase";
 import CheckBox from "./CheckBox";
 
 const Modal = ({ taskID, setAlert, todoMsg }) => {
-  const [update, setUpdate] = useState(todoMsg);
+  // const [todoText, setTodoText] = useState(todoMsg);
+  const [update, setUpdate] = useState("");
   const [isdone, setDone] = useState(false);
   function UpdateForm(e) {
     e.preventDefault();
+    const updateref = doc(db, "taskify", taskID);
     if (update === "") {
-      alert("Enter Text");
+      updateDoc(updateref, {
+        todo: todoMsg,
+        complete: isdone,
+      })
+        .then(alert("Save Existed data"))
+        .catch((err) => console.log(err.message));
+      setUpdate("");
+      setDone(false);
+      setTimeout(() => {
+        setAlert(false);
+      }, 1000);
       return;
     }
-    const updateref = doc(db, "taskify", taskID);
+
     updateDoc(updateref, {
       todo: update,
       complete: isdone,
@@ -25,8 +37,7 @@ const Modal = ({ taskID, setAlert, todoMsg }) => {
       setAlert(false);
     }, 1000);
   }
-
-  // console.log(todoMsg);
+  // console.log(update);
   return (
     <div
       className="modal fade"
@@ -66,7 +77,7 @@ const Modal = ({ taskID, setAlert, todoMsg }) => {
             <form className="mt-2" onSubmit={UpdateForm}>
               <input
                 type="text"
-                placeholder="Enter Changes in Task"
+                placeholder="Enter Changes in Task if Any ?"
                 className="form-control"
                 value={update}
                 onChange={(e) => setUpdate(e.target.value)}
